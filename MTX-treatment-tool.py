@@ -2,7 +2,7 @@ import streamlit as st
 import math
 import pandas as pd
 
-import awesome_streamlit as ast
+#import awesome_streamlit as ast
 
 from basics import * 
 import pages.Startside
@@ -10,7 +10,7 @@ import pages.Forhydering
 import pages.MTX_infusion
 import pages.Monitorering_af_toksicitet
 
-ast.core.services.other.set_logging_format()
+#ast.core.services.other.set_logging_format()
 
 PAGES = {
     "Startside" : pages.Startside,
@@ -27,7 +27,7 @@ def main():
     page = PAGES[page_selection]
 
     with st.spinner(f"Loading {page_selection} ..."):
-        ast.shared.components.write_page(page)
+        write_page(page)
 
 
 if __name__ == "__main__":

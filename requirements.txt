@@ -1,7 +1,7 @@
 streamlit==0.57.3
 #pandas==0.24.2
-awesome_streamlit.egg==info
-awesome_streamlit==20191018.1
+#awesome_streamlit.egg==info
+#awesome_streamlit==20191018.1
 
 # ---- Ny fil starter her
 

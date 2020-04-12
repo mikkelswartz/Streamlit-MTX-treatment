@@ -1,0 +1,1 @@
+web: sh setup.sh && streamlit run MTX-treatment-tool.py

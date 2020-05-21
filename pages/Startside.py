@@ -148,7 +148,7 @@ def write():
 
         # Check for relation between weigh, height and age
         try:
-            if  Vægt != "" and Alder != "" and Højde != "":
+            if  Vægt != 0 and Højde != 0 and Alder != "":
                 if 1 <= int(Alder) <= 18:
                     if not int(Vægt)*0.90 <= ((int(Alder) + 4)*2) <= int(Vægt)*1.1:
                         Teoretisk_vægt_alder = ((int(Alder) + 4)*2)

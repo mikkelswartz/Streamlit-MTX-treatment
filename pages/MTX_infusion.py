@@ -20,6 +20,7 @@ def write():
         Forhydrering_varighed_værdi = df["Forhydrering_varighed_værdi"][df_st["selected_treatment"][0]]
         Total_væskemængde = df["Total_væskemængde"][df_st["selected_treatment"][0]]
         Plasma_kreatinin_før_start = df["Plasma_kreatinin_før_start"][df_st["selected_treatment"][0]]
+        
         Infusions_start = MTX.Treatment_time_t0_validering(0, df, df_st)
 
         Kontinuerlig_infusion_start = MTX.Treatment_time_t0_validering(1, df, df_st)

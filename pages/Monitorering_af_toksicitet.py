@@ -70,21 +70,29 @@ def write():
         # Input for P_kreatinin_t36
         P_kreatinin_t36 = MTX.Blood_sample_input(36, "P-kreatinin", df, df_st)
 
-        if P_kreatinin_t23 > Plasma_kreatinin_før_start*1.5 or P_kreatinin_t36 > Plasma_kreatinin_før_start*1.5 or Se_MTX_t36 > 3.0:
-            Hydreing_ved_høj_P_kreatinin_t36 = int(round(Overflade*4500/24)) 
-            Durise_ved_høj_P_kreatinin_t36 = int(round(Overflade*900)) 
-            st.error(
-                "OPMÆRKSOM: Patienten er i høj-risiko for at have forsinket MTX udskillelse.  \n"
-                "Hydreringen øges til 4500 ml/m²/døgn svt. **" + str(Hydreing_ved_høj_P_kreatinin_t36) + " ml/t.**  \n"
-                "Duriresen skal være over 900 ml/m²/ 6 timer svt. **" + str(Durise_ved_høj_P_kreatinin_t36) + " ml/6t.**"
-            )
-        elif P_kreatinin_t36 != 0:
-            Hydreing_ved_normal_P_kreatinin_t36 = int(round(Overflade*300/24)) 
-            Durise_ved_normal_P_kreatinin_t36 = int(round(Overflade*600))
-            st.warning(
-                "Hydreringen fortsættes med 3000 ml/m²/døgn svarende til **" + str(Hydreing_ved_normal_P_kreatinin_t36) + " ml/t.**  \n"
-                "Duriresen skal være over 600 ml/m²/ 6 timer svt. **" + str(Durise_ved_normal_P_kreatinin_t36) + " ml/t.**"
-            )
+        try:
+            if P_kreatinin_t23 > Plasma_kreatinin_før_start*1.5 or P_kreatinin_t36 > Plasma_kreatinin_før_start*1.5 or Se_MTX_t36 > 3.0:
+                Hydreing_ved_høj_P_kreatinin_t36 = int(round(Overflade*4500/24)) 
+                Durise_ved_høj_P_kreatinin_t36 = int(round(Overflade*900)) 
+                st.error(
+                    "OPMÆRKSOM: Patienten er i høj-risiko for at have forsinket MTX udskillelse.  \n"
+                    "Hydreringen øges til 4500 ml/m²/døgn svt. **" + str(Hydreing_ved_høj_P_kreatinin_t36) + " ml/t.**  \n"
+                    "Duriresen skal være over 900 ml/m²/ 6 timer svt. **" + str(Durise_ved_høj_P_kreatinin_t36) + " ml/6t.**"
+                )
+            elif P_kreatinin_t36 != 0:
+                Hydreing_ved_normal_P_kreatinin_t36 = int(round(Overflade*300/24)) 
+                Durise_ved_normal_P_kreatinin_t36 = int(round(Overflade*600))
+                st.warning(
+                    "Hydreringen fortsættes med 3000 ml/m²/døgn svarende til **" + str(Hydreing_ved_normal_P_kreatinin_t36) + " ml/t.**  \n"
+                    "Duriresen skal være over 600 ml/m²/ 6 timer svt. **" + str(Durise_ved_normal_P_kreatinin_t36) + " ml/t.**"
+                )
+        except TypeError as error:
+            if str(error) == "can't multiply sequence by non-int of type 'float'":
+                st.error(
+                    "!!!  \n"
+                    "Forhydreringen er ikke registreret. Gå til forhydrering og indtast data for forhydrering."
+                    "  \n!!!"
+                    )
     
             
         #### Time 42 ####
@@ -433,7 +441,7 @@ def write():
     except IndexError:
             st.info("Der er ingen tidligere patienter. Gå til startside og opret ny patient.")
     except KeyError:
-        st.warning(
-            "Der er ikke valg en patient.  \n"
-            "Gå til 'Startside', vælg patient og behandling og tryk på knappen 'Vælg patient'."
-            )
+       st.warning(
+           "Der er ikke valg en patient.  \n"
+           "Gå til 'Startside', vælg patient og behandling og tryk på knappen 'Vælg patient'."
+           )

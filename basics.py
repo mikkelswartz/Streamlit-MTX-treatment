@@ -5,6 +5,7 @@ import re
 
 
 
+
 ###### Setup of dataframes ######
 Destination_main_file = "MTX-dataark.xlsx"
 Destination_st_file = "df_selected_treatment.xlsx"
@@ -120,7 +121,7 @@ class MTX:
             </style>
 
             <div class="footer">
-                MTX Treatment Tool (beta v2) - Et værktøj udviklet af DTU til brug ved HDM behandling af ALL patienter
+                MTX Hydration Tool (beta v0.2) - Et værktøj udviklet af DTU til brug ved HDM behandling af ALL patienter
             </div>
         """
         st.markdown(custom_footer, unsafe_allow_html=True) 
@@ -398,10 +399,11 @@ class MTX:
             [datetime.datetime]	Datetime objekt with wanted time.
         """
         
+
         Treatment_time_t0 = df["Treatment_time_t0"][df_st["selected_treatment"][0]]
-        if str(Treatment_time_t0) != "NaT":
+        if str(Treatment_time_t0) != "":
             variabel_navn = Treatment_time_t0 + dt.timedelta(hours=int(tid))
-        if str(Treatment_time_t0) == "NaT":
+        if str(Treatment_time_t0) == "":
             variabel_navn = "Tidspunkt kan ikke udregnes da forhydrering ikke er påbegyndt"
         return variabel_navn
 

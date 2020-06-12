@@ -2,6 +2,8 @@ import streamlit as st
 import math
 import pandas as pd
 
+import datetime as dt
+
 from basics import * 
 import pages.Startside
 import pages.Forhydering
@@ -21,9 +23,13 @@ def main():
     page_selection = st.sidebar.radio('', options=list(PAGES.keys()))
 
     page = PAGES[page_selection]
+    #testing
+    #before = dt.datetime.now()
+    #testing
     
     MTX.write_page(page)
     
+
     # customize width of the content
     MTX.sidebar_settings()
 
@@ -32,6 +38,10 @@ def main():
     # display costum footer
     MTX.custom_footer()
 
+    #testing
+    #after = dt.datetime.now()
+    #st.write(after-before)
+    #testing
 
 if __name__ == "__main__":
     main()

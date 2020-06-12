@@ -50,8 +50,6 @@ class MTX:
     def sidebar_settings():
         """Add selection section for setting setting the max-width and padding
         of the main block container"""
-        st.sidebar.markdown("")
-        st.sidebar.markdown("")
         max_width_100_percent = st.sidebar.checkbox("Maks bredde?", False)
         if not max_width_100_percent:
             max_width = st.sidebar.slider("Vælg maks bredde i px", 100, 2500, 900, 100)
@@ -91,11 +89,11 @@ class MTX:
 
     def hide_streamlit_style():
         hide_streamlit_style = """
-                    <style>
-                    #MainMenu {visibility: hidden;}
-                    footer {visibility: hidden;}
-                    </style>
-                    """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
         st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
     
     def custom_footer():
@@ -186,8 +184,6 @@ class MTX:
         Treatment_time_t0 = str(df["Treatment_time_t0"][df_st["selected_treatment"][0]])
         MTX_stop = str(df["Sygeplejerske_tid_MTX_afsluttet"][df_st["selected_treatment"][0]])
         Udskrevet = str(df["Udskrevet"][df_st["selected_treatment"][0]])
-
-
 
         if Treatment_time_t0 == "" or Treatment_time_t0 == "NaT":
             Behandlingsstart = "Forhydrering er ikke påbegyndt. t0 kan derfor ikke beregnes."

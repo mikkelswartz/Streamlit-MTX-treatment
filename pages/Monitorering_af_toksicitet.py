@@ -23,7 +23,7 @@ def write():
         Time_t54 = MTX.Treatment_time_t0_validering(54, df, df_st)
         Time_t60 = MTX.Treatment_time_t0_validering(60, df, df_st)
         Time_t66 = MTX.Treatment_time_t0_validering(66, df, df_st)
-        Durise_600ml_6timer = df["Durise_600ml_6timer"][df_st["selected_treatment"][0]]
+        Diurese_600ml_6timer = df["Diurese_600ml_6timer"][df_st["selected_treatment"][0]]
         Dosis_natriumcarbonat_ved_lav_pH = df["Dosis_natriumcarbonat_ved_lav_pH"][df_st["selected_treatment"][0]]
         
         
@@ -34,9 +34,9 @@ def write():
         MTX.Blood_sample_overview(Udskillelsesskema, df, df_st)
 
 
-        if Dosis_natriumcarbonat_ved_lav_pH != 0.0 and Durise_600ml_6timer != 0.0:
+        if Dosis_natriumcarbonat_ved_lav_pH != 0.0 and Diurese_600ml_6timer != 0.0:
             st.info(
-                "Diuresen skal være over 600 ml/m²/ 6 timer svt. " + str(Durise_600ml_6timer) + " ml/6 timer.  \n\n"
+                "Diuresen skal være over 600 ml/m²/ 6 timer svt. " + str(Diurese_600ml_6timer) + " ml/6 timer.  \n\n"
                 "Ved urin pH<7.0 skal der gives ekstra bicarbonat:  \n"
                 "Na-bicarbonat 20 mmol/m² blandes i 40 ml af hydreringsvæsken og gives over over 30 min. samtidig med forhydreringen. "
                 "Svarende til: **" + str(Dosis_natriumcarbonat_ved_lav_pH) + "** mmol Na-bicarbonat.  \n\n"
@@ -73,18 +73,18 @@ def write():
         try:
             if P_kreatinin_t23 > Plasma_kreatinin_før_start*1.5 or P_kreatinin_t36 > Plasma_kreatinin_før_start*1.5 or Se_MTX_t36 > 3.0:
                 Hydreing_ved_høj_P_kreatinin_t36 = int(round(Overflade*4500/24)) 
-                Durise_ved_høj_P_kreatinin_t36 = int(round(Overflade*900)) 
+                Diurese_ved_høj_P_kreatinin_t36 = int(round(Overflade*900)) 
                 st.error(
                     "OPMÆRKSOM: Patienten er i høj-risiko for at have forsinket MTX udskillelse.  \n"
                     "Hydreringen øges til 4500 ml/m²/døgn svt. **" + str(Hydreing_ved_høj_P_kreatinin_t36) + " ml/t.**  \n"
-                    "Duriresen skal være over 900 ml/m²/ 6 timer svt. **" + str(Durise_ved_høj_P_kreatinin_t36) + " ml/6t.**"
+                    "Duriresen skal være over 900 ml/m²/ 6 timer svt. **" + str(Diurese_ved_høj_P_kreatinin_t36) + " ml/6t.**"
                 )
             elif P_kreatinin_t36 != 0:
                 Hydreing_ved_normal_P_kreatinin_t36 = int(round(Overflade*300/24)) 
-                Durise_ved_normal_P_kreatinin_t36 = int(round(Overflade*600))
+                Diurese_ved_normal_P_kreatinin_t36 = int(round(Overflade*600))
                 st.warning(
                     "Hydreringen fortsættes med 3000 ml/m²/døgn svarende til **" + str(Hydreing_ved_normal_P_kreatinin_t36) + " ml/t.**  \n"
-                    "Duriresen skal være over 600 ml/m²/ 6 timer svt. **" + str(Durise_ved_normal_P_kreatinin_t36) + " ml/t.**"
+                    "Duriresen skal være over 600 ml/m²/ 6 timer svt. **" + str(Diurese_ved_normal_P_kreatinin_t36) + " ml/t.**"
                 )
         except TypeError as error:
             if str(error) == "can't multiply sequence by non-int of type 'float'":
@@ -101,7 +101,7 @@ def write():
         MTX.Fritekst_indtastningsfelt("Time 42", df, df_st)
 
         st.write("MTX konc t42 analyseres sammen med t23 til time 36.")
-        st.warning("OBS: Hvis Se-MTX t42 > 1 µM skal der straks gives ekstra calciumfolinat.")
+        st.warning("OBS: Hvis Se-MTX t42 > 1 µmol/l skal der straks gives ekstra calciumfolinat.")
 
         # Input for Se_MTX_t42
         Se_MTX_t42 = MTX.Blood_sample_input(42, "Se-MTX", df, df_st)
@@ -110,7 +110,7 @@ def write():
         try:
             if (Se_MTX_t42 < 0.5 or Se_MTX_t42 > 3.0) and Se_MTX_t42 != 0.0:
                 st.error(
-                    "OPMÆRMSOM: Du har indtastet en Se-MTX værdi som ikke ligger intervallet 0.5-3.0 µM hvilket er uden for normalen ved time 42."
+                    "OPMÆRMSOM: Du har indtastet en Se-MTX værdi som ikke ligger intervallet 0.5-3.0 µmol/l hvilket er uden for normalen ved time 42."
                 )
         except TypeError as error:
             if error == "'<' not supported between instances of 'str' and 'float'":
@@ -185,11 +185,11 @@ def write():
                     df,df_st)
 
                 Hydreing_ved_sen_udskillelse = int(round(Overflade*4500/24))
-                Durise_ved_sen_udskillelse = int(round(Overflade*900))
+                Diurese_ved_sen_udskillelse = int(round(Overflade*900))
                 st.error(
                     "OPMÆRKSOM: Patienten overgår til skema for sen udskillelse!  \n\n"
                     "Hydreringen øges til 4500 ml/m²/døgn svt. **" + str(Hydreing_ved_sen_udskillelse) + " ml/t.**  \n"
-                    "Duriresen skal være over 900 ml/m²/ 6 timer svt. **" + str(Durise_ved_sen_udskillelse) + " ml/6t.**  \n"
+                    "Duriresen skal være over 900 ml/m²/ 6 timer svt. **" + str(Diurese_ved_sen_udskillelse) + " ml/6t.**  \n"
                     "Fortsættes indtil se-MTX er < 0,2 µmol/l."
                 )
 

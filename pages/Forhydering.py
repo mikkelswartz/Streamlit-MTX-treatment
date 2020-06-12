@@ -170,7 +170,7 @@ def write():
         )
 
         if Treatment_time_t0 != None:
-            st.info("MTX infusion bør startes den " + str(Treatment_time_t0.date()) + " kl. " + str(Treatment_time_t0.time())[:-3])
+            st.info("Ud fra den angivede varighed af forhydreringen, er infusion af MTX planlagt til at starte den " + str(Treatment_time_t0.date()) + " kl. " + str(Treatment_time_t0.time())[:-3])
 
     except IndexError:
         st.info("Der er ingen tidligere patienter. Gå til startside og opret ny patient.")

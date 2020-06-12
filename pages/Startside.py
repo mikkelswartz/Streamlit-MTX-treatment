@@ -162,7 +162,7 @@ def write():
                         if not Vægt*0.9 <= Teoretisk_vægt_højde <= Vægt*1.1:
                             st.error(
                                 "Patienten bør veje " + str(Teoretisk_vægt_højde) + " kg ifølge formlen   \n"
-                                "$$Kg=2,329*exp(1,895* height \ in \ m)$$"
+                                "$$Kg=2,329 \cdot exp(1,895 \cdot højde \ i \ m)$$"
                                 "  \nPatientens vægt på " + str(Vægt) + " kg afviger med mere end 10%. Tjek indtastningerne."
                             )
                     if Køn == "Kvinde":
@@ -170,7 +170,7 @@ def write():
                         if not Vægt*0.9 <= Teoretisk_vægt_højde <= Vægt*1.1:
                             st.error(
                                 "Patienten bør veje " + str(Teoretisk_vægt_højde) + " kg ifølge formlen   \n"
-                                "$$Kg=2,120*exp(1,993* height \ in \ m)$$"
+                                "$$Kg=2,120 \cdot exp(1,993 \cdot højde \ i \ m)$$"
                                 "  \nPatientens vægt på " + str(Vægt) + " kg afviger med mere end 10%. Tjek indtastningerne."
                             )
         except (UnboundLocalError, TypeError):

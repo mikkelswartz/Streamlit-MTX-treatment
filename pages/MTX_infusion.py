@@ -40,18 +40,18 @@ def write():
         # Text area for notes
         MTX.Fritekst_indtastningsfelt("Time 0", df, df_st)
 
-        Durise_600ml_6timer = int(round(600*(Overflade)))
-        if Durise_600ml_6timer != 0.0:
+        Diurese_600ml_6timer = int(round(600*(Overflade)))
+        if Diurese_600ml_6timer != 0.0:
             st.write(
-                "Durisen skal være over 600 ml/m²/ 6 timer svt. **" + str(Durise_600ml_6timer) + " ml/6 timer**"
+                "Diuresen skal være over 600 ml/m²/ 6 timer svt. **" + str(Diurese_600ml_6timer) + " ml/6 timer**"
             )
-            df.loc[df_st["selected_treatment"][0],"Durise_600ml_6timer"] = Durise_600ml_6timer
+            df.loc[df_st["selected_treatment"][0],"Diurese_600ml_6timer"] = Diurese_600ml_6timer
             df.to_excel(Destination_main_file)
 
         Furosemid = int(round(0.5*Vægt))
         if Furosemid != 0.0:
             st.write(
-                "Hvis durisen er mindre gives furosemid 0.5 mg/kg iv. svt. **" +str(Furosemid) + " mg **"
+                "Hvis diuresen er mindre gives furosemid 0.5 mg/kg iv. svt. **" +str(Furosemid) + " mg **"
             )
             df.loc[df_st["selected_treatment"][0],"Furosemid"] = Furosemid
             df.to_excel(Destination_main_file)
@@ -80,7 +80,7 @@ def write():
         one_to_ten_MTX_dose = int(round(5000*round(Overflade,2)*0.1))
         if one_to_ten_MTX_dose != 0.0:
             st.write(
-                "Start blodinfusion og angiv tidspunkt. 1/10 af MTX dosis gives over 1 time, svt. **" + str(one_to_ten_MTX_dose) + " mg**"
+                "Start MTX-infusion og angiv tidspunkt. 1/10 af MTX dosis gives over 1 time, svt. **" + str(one_to_ten_MTX_dose) + " mg**"
             )
             df.loc[df_st["selected_treatment"][0],"one_to_ten_MTX_dose"] = one_to_ten_MTX_dose
             df.to_excel(Destination_main_file)
@@ -122,12 +122,12 @@ def write():
 
             # Checkbox that have to be checked before the nurce can safe treatment data
             if str(df["Tilstrækkelig_forhydrering_og_pH"][df_st["selected_treatment"][0]]) != "True":
-                Tilstrækkelig_forhydrering_og_pH = st.checkbox("Har der været mindst 4 timers forhydrering og har pH vøret ≥7.0 i mindst 3 timer?")
+                Tilstrækkelig_forhydrering_og_pH = st.checkbox("Har der været mindst 4 timers forhydrering og har pH været ≥7.0 i mindst 3 timer?")
                 if Tilstrækkelig_forhydrering_og_pH is True or str(df["Tilstrækkelig_forhydrering_og_pH"][df_st["selected_treatment"][0]]) is True:
                     df.loc[df_st["selected_treatment"][0],"Tilstrækkelig_forhydrering_og_pH"] = True
                     df.to_excel(Destination_main_file)
             elif str(df["Tilstrækkelig_forhydrering_og_pH"][df_st["selected_treatment"][0]]) == "True":
-                Tilstrækkelig_forhydrering_og_pH = st.checkbox("Har der været mindst 4 timers forhydrering og har pH vøret ≥7.0 i mindst 3 timer?", value=True)
+                Tilstrækkelig_forhydrering_og_pH = st.checkbox("Har der været mindst 4 timers forhydrering og har pH været ≥7.0 i mindst 3 timer?", value=True)
 
 
             if Tilstrækkelig_forhydrering_og_pH is True or df["Tilstrækkelig_forhydrering_og_pH"][df_st["selected_treatment"][0]] is True:
@@ -149,7 +149,7 @@ def write():
                         "Time 66 (" + str(Time_t66)[5:-3] + "): MTX"
                     )
             else:
-                st.error("Du skal godkende at der været mindst 4 timers forhydrering og har pH vøret ≥7.0 i mindst 3 timer før du kan gemme behandlingsdata")
+                st.error("Du skal godkende at der været mindst 4 timers forhydrering og har pH været ≥7.0 i mindst 3 timer før du kan gemme behandlingsdata")
 
 
             #### Time 1 ####
